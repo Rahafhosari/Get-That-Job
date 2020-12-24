@@ -47,13 +47,19 @@ def log_in(request):
 
 #for logout
 def log_out(request):
-    
     del request.session['logged_user_info']
     return redirect('/')
 
 #to view the user's profile 
 def profile(request):
-    return render(request,"profile.html")
+    user_context = models.display(request.session['logged_user_info']['user_id'])
+    return render(request,"profile.html",user_context)
+
+#updating user information
+def edit(request,user_id):
+    user = request.session['logged_user_info']
+    models.edit(request.POST,request.session['logged_user_info']['user_id'])
+    return redirect('/profile')
 
 #adding booking
 def booking(request):

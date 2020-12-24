@@ -62,14 +62,11 @@ class User(models.Model):
     first_name=models.CharField(max_length=255)
     last_name=models.CharField(max_length=255)
     email=models.CharField(max_length=255)
+    password=models.CharField(max_length=255)
     birthday=models.DateField(null = True)
     education=models.TextField(null=True)
     field_of_experience=models.TextField(null=True)
-    birthday=models.DateField(null=True)
-    education=models.TextField()
-    field_of_experience=models.TextField()
-    image = models.ImageField(upload_to="images/",blank=True)
-    password=models.CharField(max_length=255)
+    image = models.ImageField(upload_to="images/",null=True)
     interests=models.TextField(null=True)
     about=models.TextField(null=True)
     role=models.ForeignKey(Role,related_name='user', on_delete=models.CASCADE,default=0) # foreignkey one to many  user with role
@@ -136,3 +133,29 @@ def user_login(login_info):
         return new_user_exist
     return False
 
+#Update user information
+def edit(user_info,user_id):
+    # user = User.objects.get(id=update_id)
+    # fname = user_info['first_name']
+    # user.first_name = fname
+    # user.save()
+    #return user
+    User.objects.filter(id=user_id).update(first_name=user_info['first_name'],last_name=user_info['last_name'],email=user_info['email'],birthday=user_info['birthday'],education=user_info['education'],field_of_experience=user_info['field_expertise'],image=user_info['img'],interests=['interests'],about=['about'])
+
+
+#Show user info on profile
+def display(user_id):
+    user = User.objects.get(id=user_id)
+    context={
+        'user_id':user.id,
+        'first_name' : user.first_name,
+        'last_name' : user.last_name,
+        'email' : user.email,
+        'birthday':user.birthday,
+        'education':user.education,
+        'field_of_experience':user.field_of_experience,
+        # 'image':user.image,
+        'interests':user.interests,
+        'about':user.about,
+    }
+    return context
