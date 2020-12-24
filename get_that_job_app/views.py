@@ -50,3 +50,15 @@ def log_out(request):
     
     del request.session['logged_user_info']
     return redirect('/')
+
+#to view the user's profile 
+def profile(request):
+    return render(request,"profile.html")
+
+#adding booking
+def booking(request):
+    return render(request,'booking.html')
+
+#adding partners
+def partner(request):
+    return render(request,'partners.html')

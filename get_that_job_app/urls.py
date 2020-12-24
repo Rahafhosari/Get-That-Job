@@ -8,7 +8,7 @@ urlpatterns = [
     path('register-page', views.registration_page),
     path('log_in',views.log_in),
     path('log_out',views.log_out),
-    # path('profile',views.profile),
-    # path('booking',views.booking),
-    # path('partner',views.partner),
+    path('profile',views.profile),
+    path('booking',views.booking),
+    path('partner',views.partner),
 ]
