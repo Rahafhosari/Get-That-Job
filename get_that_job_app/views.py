@@ -38,7 +38,7 @@ def log_in(request):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('/home')
+            return redirect('/')
         else:
             user = models.user_login(request.POST)
             request.session['logged_user_info'] = user
@@ -47,13 +47,19 @@ def log_in(request):
 
 #for logout
 def log_out(request):
-    
     del request.session['logged_user_info']
     return redirect('/')
 
 #to view the user's profile 
 def profile(request):
-    return render(request,"profile.html")
+    user_context = models.display(request.session['logged_user_info']['user_id'])
+    return render(request,"profile.html",user_context)
+
+#updating user information
+def edit(request,user_id):
+    user = request.session['logged_user_info']
+    models.edit(request.POST,request.session['logged_user_info']['user_id'])
+    return redirect('/profile')
 
 #adding booking
 def booking(request):
