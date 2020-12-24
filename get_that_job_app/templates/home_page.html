@@ -70,12 +70,12 @@
                                 <label class="nav-item active"> Email:</label>
                                 <input class="form-control mr-sm-2"  placeholder="Email" name="email">
                                 <label class="nav-item active"> Password:</label>
-                                <input class="form-control mr-sm-2"  placeholder="Password" name="password">
+                                <input type="password" class="form-control mr-sm-2"  placeholder="Password" name="password">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log-In</button>
                             </form>
-                            <form action="/register" method="POST" class="form-inline"> <!-- go to register page -->
+                            <form action="/register-page" method="POST" class="form-inline"> <!-- go to register page -->
                                 {% csrf_token %}
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Up</button>
                             </form>
                         <!-- <li class="nav-item active">
                             <a class="nav-link " href="#">Hello (user)</a>
@@ -83,6 +83,13 @@
                     </ul>
                 </div>
             </nav>
+            {% if messages %}
+                <ul class="messages">    
+                {% for message in messages %}    
+                    <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
+                {% endfor %}
+                </ul>
+            {% endif %}
             <div class="content">
                 <div id="about" class="jumbotron">
                     <h3>Introduction About Get That Job : </h3>

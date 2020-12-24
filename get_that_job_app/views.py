@@ -38,7 +38,7 @@ def log_in(request):
         if len(errors) > 0:
             for key, value in errors.items():
                 messages.error(request, value)
-            return redirect('/home')
+            return redirect('/')
         else:
             user = models.user_login(request.POST)
             request.session['logged_user_info'] = user
