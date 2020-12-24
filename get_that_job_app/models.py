@@ -141,21 +141,3 @@ def edit(user_info,user_id):
     # user.save()
     #return user
     User.objects.filter(id=user_id).update(first_name=user_info['first_name'],last_name=user_info['last_name'],email=user_info['email'],birthday=user_info['birthday'],education=user_info['education'],field_of_experience=user_info['field_expertise'],image=user_info['img'],interests=['interests'],about=['about'])
-
-
-#Show user info on profile
-def display(user_id):
-    user = User.objects.get(id=user_id)
-    context={
-        'user_id':user.id,
-        'first_name' : user.first_name,
-        'last_name' : user.last_name,
-        'email' : user.email,
-        'birthday':user.birthday,
-        'education':user.education,
-        'field_of_experience':user.field_of_experience,
-        # 'image':user.image,
-        'interests':user.interests,
-        'about':user.about,
-    }
-    return context
