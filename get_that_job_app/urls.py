@@ -11,5 +11,6 @@ urlpatterns = [
     path('profile',views.profile),
     path('edit',views.edit),
     path('booking',views.booking),
-    path('partner',views.partner),
+    path('admin',views.admin),
+    path('addpartner',views.add_partner),
 ]

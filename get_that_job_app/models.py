@@ -69,7 +69,7 @@ class User(models.Model):
     image = models.ImageField(upload_to="images/",null=True)
     interests=models.TextField(null=True)
     about=models.TextField(null=True)
-    role=models.ForeignKey(Role,related_name='user', on_delete=models.CASCADE,default=0) # foreignkey one to many  user with role
+    role=models.ForeignKey(Role,related_name='role', on_delete=models.CASCADE,default=0) # foreignkey one to many  user with role
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     objects = UserManager()
@@ -159,3 +159,29 @@ def display(user_id):
         'about':user.about,
     }
     return context
+
+#ADMIN PAGE *******************************************
+#Displaying Users
+def all_users():
+    context = {
+        "users": User.objects.all().role.filter(id=2),
+        "consultants": User.objects.all().role.filter(id=3),
+    }
+    return context
+
+#Adding Partner (Admin view page)
+def add_partner(post_info):
+    admin = User.objects.all().role.filter(id=1)
+    #partners = Partner.objects.create(name=post_info['company_name'],field_of_company=post_info['company_field'],about=post_info['co_about'],image=post_info['co_logo'])
+    admin.partner.create(name=post_info['company_name'],field_of_company=post_info['company_field'],about=post_info['co_about'],image=post_info['co_logo'])
+
+#Test
+#def all_users():
+    #User.objects.all().user.filter(id=2)
+#def all_consultants():
+    #User.objects.all().user.filter(id=3)
+#********************************************************
+
+
+
+
