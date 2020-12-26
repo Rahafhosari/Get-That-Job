@@ -62,10 +62,12 @@ fieldset{
     padding: 0px 15px 15px 15px;
     width: 440px;
     text-align: left;
+    overflow: scroll;
 }
 legend{
     color:rgb(154, 172, 175) /*#6610f2*/;
     font-size: 20px;
+    padding-left: 10px;
 }
 .col-form-label{
     text-align: start;
@@ -97,6 +99,11 @@ legend{
     justify-content: space-evenly;
 }
 .sessions{
+    color: #1b3438;
+    display: flex;
+    justify-content: space-evenly;
+}
+.admin_view{
     color: #1b3438;
     display: flex;
     justify-content: space-evenly;

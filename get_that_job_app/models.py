@@ -57,6 +57,7 @@ class Role(models.Model):
     name = models.CharField(max_length=255)
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+    objects = UserManager()
 
 class User(models.Model):
     first_name=models.CharField(max_length=255)
@@ -69,7 +70,7 @@ class User(models.Model):
     image = models.ImageField(upload_to="images/",null=True)
     interests=models.TextField(null=True)
     about=models.TextField(null=True)
-    role=models.ForeignKey(Role,related_name='role', on_delete=models.CASCADE,default=0) # foreignkey one to many  user with role
+    role=models.ForeignKey(Role,related_name='role', on_delete=models.CASCADE,default=2) # foreignkey one to many  user with role
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     objects = UserManager()
@@ -87,10 +88,11 @@ class Partner(models.Model):
     name=models.CharField(max_length=255)
     field_of_company=models.TextField()
     about=models.TextField()
-    image = models.ImageField(upload_to="images/",blank=True)
+    image = models.ImageField(upload_to="images/",null=True)
     admin=models.ForeignKey(User,related_name='partner', on_delete=models.CASCADE)# foreignkey one to many user with partner
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
+    objects = UserManager()
 
 class Story(models.Model):
     description=models.TextField()
@@ -164,16 +166,24 @@ def display(user_id):
 #Displaying Users
 def all_users():
     context = {
-        "users": User.objects.all().role.filter(id=2),
-        "consultants": User.objects.all().role.filter(id=3),
+        "users": User.objects.filter(role = Role.objects.get(id=2)),
+        "consultants": User.objects.filter(role = Role.objects.get(id=3)),
+        "partners": Partner.objects.all(),
+        "admins": User.objects.filter(role = Role.objects.get(id=1)),
+        "all_users" : User.objects.all()
     }
     return context
 
 #Adding Partner (Admin view page)
 def add_partner(post_info):
-    admin = User.objects.all().role.filter(id=1)
-    #partners = Partner.objects.create(name=post_info['company_name'],field_of_company=post_info['company_field'],about=post_info['co_about'],image=post_info['co_logo'])
-    admin.partner.create(name=post_info['company_name'],field_of_company=post_info['company_field'],about=post_info['co_about'],image=post_info['co_logo'])
+    admin = User.objects.filter(role= Role.objects.get(id=1))
+    partners = Partner.objects.create(name=post_info['company_name'],field_of_company=post_info['company_field'],about=post_info['co_about'],image=post_info['co_logo'],admin_id=1)
+    return partners
+    
+    # admin.partner.create(name=post_info['company_name'],field_of_company=post_info['company_field'],about=post_info['co_about'],image=post_info['co_logo'])
+
+def change_user_id(user_info):
+    User.objects.filter(email=user_info['user_email']).update(role_id=user_info['user_role'])
 
 #Test
 #def all_users():
