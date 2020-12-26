@@ -6,8 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking</title>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">   
+    <style>
+        form.form-inline.space{
+        padding-left: 267px;
+        }
+    </style>
+    {% load static %}
+    <!-- Required meta tags -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+    <!-- Bootstrap CSS -
+    
+
 <body>
+    <div class="container">
+        <div class="row"> 
+            <div class="col-9 ">
+            <h1>Welcome to Get That Job Website!</h1>
+            </div>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <img src="{% static 'img/logo.jpg' %}"  class="col-3">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <!-- <li class="nav-item active">
+                        <a class="nav-link" href="#">Home </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Booking</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link " href="#">Partners</a>
+                    </li> -->
+                    <!-- <li>
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </li> -->
+                        <form action="/log_in"  method="POST" class="form-inline">  <!-- go to home page if the email&password true or redirect with show what's the wrong-->
+                            {% csrf_token %}
+                            <label class="nav-item active"> Email:</label>
+                            <input class="form-control mr-sm-2"  placeholder="Email" name="email">
+                            <label class="nav-item active"> Password:</label>
+                            <input class="form-control mr-sm-2"  placeholder="Password" name="password">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log-In</button>
+                        </form>
+                        <form action="/register" method="POST" class="form-inline"> <!-- go to register page -->
+                            {% csrf_token %}
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Up</button>
+                        </form>
+                    <!-- <li class="nav-item active">
+                        <a class="nav-link " href="#">Hello (user)</a>
+                    </li>     -->
+                </ul>
+            </div>
+        </nav>
     <div class="main">
         <div class="list">
 

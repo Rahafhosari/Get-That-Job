@@ -65,7 +65,22 @@ def edit(request):
 def booking(request):
     return render(request,'Booking.html',detalis)
 
+
 #adding partners
 def partner(request):
     return render(request,'partners.html')
+
+#Admin page
+def admin(request):
+    context = models.all_users()
+    return render(request,'admin.html',context)
+
+def add_partner(request):
+    models.add_partner(request.POST)
+    return redirect('/admin')
+
+#Admin changes user_id 
+def edit_user_id(request):
+    models.change_user_id(request.POST)
+    return redirect('/admin')
 
