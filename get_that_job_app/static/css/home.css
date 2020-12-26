@@ -33,6 +33,7 @@ button.btn.btn-outline-success.my-2.my-sm-0 {
     color:rgb(27 52 56);
     border-color: rgb(27 52 56);
     margin-right: 13px;
+   
 }
 label.nav-item.active{
     font-size: larger;
@@ -52,4 +53,7 @@ div#about {
 }
 a{
     float: right;
+}
+img{
+    width: 130px;
 }
