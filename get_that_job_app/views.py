@@ -56,15 +56,16 @@ def profile(request):
     return render(request,"profile.html",user_context)
 
 #updating user information
-def edit(request,user_id):
+def edit(request):
     user = request.session['logged_user_info']
     models.edit(request.POST,request.session['logged_user_info']['user_id'])
     return redirect('/profile')
 
 #adding booking
 def booking(request):
-    return render(request,'booking.html')
+    return render(request,'Booking.html',detalis)
 
 #adding partners
 def partner(request):
     return render(request,'partners.html')
+

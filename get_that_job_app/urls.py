@@ -1,6 +1,10 @@
 from django.urls import path
 from . import views
 
+
+from django.http import JsonResponse
+
+
 urlpatterns = [
     path('', views.home),
     path('in',views.home_in),
@@ -12,4 +16,5 @@ urlpatterns = [
     path('edit',views.edit),
     path('booking',views.booking),
     path('partner',views.partner),
+    
 ]

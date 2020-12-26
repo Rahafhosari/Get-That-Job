@@ -73,7 +73,7 @@ class User(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     objects = UserManager()
-
+    
 class Session (models.Model):
     date=models.DateField()
     period=models.TimeField()
@@ -107,7 +107,7 @@ def add_new_user(new_user):
         if new_user['password_confirm'] == new_user['password']:
             password = new_user['password']  #hashing user password
             hashed = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
-            user_info = User.objects.create(first_name=new_user['first_name'],last_name=new_user['last_name'],email=new_user['email'],password=hashed)  #newUser['key name from form']
+            user_info = User.objects.create(first_name=new_user['first_name'],last_name=new_user['last_name'],email=new_user['email'],birthday=new_user['birthday'],education=new_user['education'],field_of_experience=new_user['field_expertise'],interests=new_user['interests'],about=new_user['about'])
             new_user_info = {
                         'user_id': user_info.id,
                         'first_name': user_info.first_name,
@@ -153,7 +153,6 @@ def display(user_id):
         'birthday':user.birthday,
         'education':user.education,
         'field_of_experience':user.field_of_experience,
-        # 'image':user.image,
         'interests':user.interests,
         'about':user.about,
     }
