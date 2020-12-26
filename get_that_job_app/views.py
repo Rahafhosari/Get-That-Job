@@ -74,3 +74,7 @@ def add_partner(request):
     models.add_partner(request.POST)
     return redirect('/admin')
 
+#Admin changes user_id 
+def edit_user_id(request):
+    models.change_user_id(request.POST)
+    return redirect('/admin')

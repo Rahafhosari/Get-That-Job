@@ -66,7 +66,8 @@
         <div class="partner">
             <fieldset>
                 <legend>Add a Partner</legend>
-                <form action="/" method="POST">
+                <form action="/addpartner" method="POST">
+                    {% csrf_token %}
                     <div class="form-group row">
                         <label for="first_name" class="col-form-label"> Name of Company</label>
                         <div><input type="text" class="form-control" name="company_name" id="company_name" placeholder="company name"></div>
@@ -94,11 +95,14 @@
                 <fieldset>
                     <legend>Partners list</legend>
                     <ul>
-                        <li>[ Company1 Name ]</li><img src="#" alt="logo">
+                        {% for partner in partners %}
+                        <li> {{partner.name}} </li>
+                        <!-- <li>[ Company1 Name ]</li><img src="#" alt="logo">
                         <li>[ Company2 Name ]</li><img src="#" alt="logo">
                         <li>[ Company3 Name ]</li><img src="#" alt="logo">
                         <li>[ Company4 Name ]</li><img src="#" alt="logo">
-                        <li>[ Company5 Name ]</li><img src="#" alt="logo">
+                        <li>[ Company5 Name ]</li><img src="#" alt="logo"> -->
+                        {% endfor %}
                     </ul>
                 </fieldset>
             </div>
@@ -106,16 +110,25 @@
         <div class="all_users">
             <!-- List of Users -->
             <fieldset>
-                <legend>All Users</legend>
+                <legend>Admins</legend>
+                {% for admin in admins %}
+                <ul>
+                    <li>{{admin.first_name}} {{admin.last_name}} <br> {{admin.email}} </li><hr>
+                </ul>
+                {% endfor %}
+            </fieldset>
+            <!-- List of Users -->
+            <fieldset>
+                <legend>Users</legend>
                 {% for user in users %}
                 <ul>
-                    <li>{{user.first_name}} {{user.last_name}}</li>
+                    <li>{{user.first_name}} {{user.last_name}} <br> {{user.email}} </li><hr>
                 </ul>
                 {% endfor %}
             </fieldset>
             <!-- List of Consultants -->
             <fieldset>
-                <legend>All Consultants</legend>
+                <legend>Consultants</legend>
                 {% for consultant in consultants %}
                 <ul>
                     <li>{{consultant.first_name}} {{consultant.last_name}}</li>
@@ -127,20 +140,52 @@
             <!-- List of User Sessions -->
             <fieldset>
                 <legend>Users Sessions</legend>
-                {% for %}
+                <!-- for loop for user session-->
                 <ul>
-                    <li> {{ }} </li>
+                    <li>  </li>
                 </ul>
-                {% endfor %}
+                
             </fieldset>
             <!-- List of Consultant Sessions -->
             <fieldset>
                 <legend>Consultants Sessions</legend>
-                {% for  %}
+                <!--for loop for consultant session-->
                 <ul>
-                    <li> {{ }} </li>
+                    <li>  </li>
                 </ul>
-                {% endfor %}
+            
+            </fieldset>
+        </div>
+         <!-- THIS Is IS ADMIN VIEW ONLY (id for user logged in == 1)-->
+         <div class="admin_view">
+            <fieldset>
+                <legend>User Role</legend>
+                <form action="/adminedit" method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="user_email" class="col-form-label">User Email</label>
+                        <select id="user_email" class="form-control" name="user_email">
+                            <option value="yourfield" class="form-control"> - choose user email - </option>
+                            {% for user in all_users %}
+                            <option> {{user.email}} </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="user_role" class="col-form-label">User Role</label>
+                        <select id="user_role" class="form-control" name="user_role">
+                            <option value="yourfield" id="role_id" class="form-control"> - choose user role - </option>
+                            <option> 1 </option>
+                            <option> 2 </option>
+                            <option> 3 </option>
+                        </select>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-sm-10">
+                            <button  type="submit" class="btn btn-primary">Edit Role</button>
+                        </div>
+                    </div>
+                </form>
             </fieldset>
         </div>
     </main>
