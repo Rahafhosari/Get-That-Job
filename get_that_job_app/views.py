@@ -63,7 +63,8 @@ def edit(request,user_id):
 
 #adding booking
 def booking(request):
-    return render(request,'booking.html')
+    context = models.all_users()
+    return render(request,'booking.html',context)
 
 #Admin page
 def admin(request):

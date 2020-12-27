@@ -1,8 +1,11 @@
+body{
+    font-family: cursive;
+}
 .container{
     margin: 0 auto;
     padding: 0px;
     max-width: 98%;
-    background-color:  #9aacaf;
+    font-family: cursive;
 }
 h1{
     font-weight: bold;
@@ -53,7 +56,4 @@ div#about {
 }
 a{
     float: right;
-}
-img{
-    width: 130px;
 }

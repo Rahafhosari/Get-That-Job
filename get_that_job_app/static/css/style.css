@@ -1,47 +1,11 @@
-.main{  
-    display: flex;
-  
-    color: #1b3438;
+body{
+    font-family: cursive;
 }
-.list{
-    width: 250px;
-    border:2px solid #2cc3cc;
-    margin: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    color: #1b3438;
-    
-   
-}
-.list img{
-    width: 40px;
-}
-.choice{
-    margin: 20px;
-    display: flex;
-    color: #1b3438;
-    padding: 10px;
-    
-}
-.choice select{
-    background-color: #2cc3cc;
-    color: #1b3438;
-}
-.choice label{
-    padding-bottom: 10px;
-}
-
-a{
-    color: #2cc3cc;
-}
-input{
-    border: 1px solid #2cc3cc;
-}
+/* Header and Navigation bar ****************************************************/
 .container{
     margin: 0 auto;
     padding: 0px;
-    max-width: 98%;
-    background-color:  #9aacaf;
+    max-width: 97%;
 }
 h1{
     font-weight: bold;
@@ -49,14 +13,14 @@ h1{
     font-size: 52px;
     font-family: cursive;
 }
+.form-control{
+    border: 1px outset #6f42c1;
+}
 .form-inline-login{
     display: flex;
 }
 form.form-inline {
     margin-top: 3px;
-}
-#more {
-    display: none;
 }
 .button.btn.btn-outline-success.my-2.my-sm-0{
     width: 108px;
@@ -68,31 +32,84 @@ li{
     background-color: rgb(44 195 217);
 }
 button.btn.btn-outline-success.my-2.my-sm-0 {
-    background-color: rgb(44 195 217);
-    color:rgb(27 52 56);
-    border-color: rgb(27 52 56);
+    color: rgb(27, 52, 56);
+    background-color:  rgb(44, 195, 217) ;
+    border-color: #6610f2/*rgb(154, 172, 175)*/;
+    box-shadow: 2px 4px rgb(154, 172, 175);
     margin-right: 13px;
-   
 }
 label.nav-item.active{
     font-size: larger;
     padding-right: 9px;
 }
 .bg-light{
-    margin: 0px 12px;
-    border-radius: 6px;
     background-color: rgb(44 195 217) !important;
 }
 a.nav-link {
     font-size: large;
 }
-div#about {
-    padding: 27px !important;
-    margin: 11px 40px;
+
+/* Registration****************************************************/ 
+main{
+    margin: 0 auto;
+    width: 1000px;
+    display: flex;
+    justify-content: space-evenly;
+    top: 10%;
+    left: 13%;
 }
-a{
-    float: right;
+fieldset{
+    border: 1px solid rgb(61, 61, 148);
+    padding: 0px 15px 15px 15px;
+    width: 440px;
+    text-align: center;
+    display: flex;
 }
-img{
-    width: 130px;
+legend{
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
 }
+.row{
+    flex-wrap: nowrap;
+}
+.form-group{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+label{
+    width: 100px;
+}
+.col-form-label{
+    text-align: start;
+    margin-right:25px;
+    font-weight: bold;
+}
+form{
+    display: inline-block;
+}
+.form-control{
+    width: 240px;
+    box-shadow: 2px 2px rgb(155, 144, 144);
+}
+.btn{
+    box-shadow: 2px 3px rgb(60, 60, 83);
+}
+:placeholder-shown{
+    font-style: italic;
+}
+.form-check-label{
+    display: inline;
+}
+.consultant{
+    display: flex;
+}
+
+/* background-color: #9aacaf;
+text color: #1b3438;
+styling color: background-color: #2cc3cc;
+
+sky blue rgb(44, 195, 217)
+dark grey  rgb(27, 52, 56)
+light grey rgb(154, 172, 175)  */
