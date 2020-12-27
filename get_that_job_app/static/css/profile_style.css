@@ -9,10 +9,14 @@ body{
 }
 h1{
     font-weight: bold;
-    margin: 83px 0px 0px 23px;
-    font-size: 52px;
+    margin: 7px 0px 0px 28px;
+    font-size: 49px;
     font-family: cursive;
 }
+.navbar-nav ul li{
+    padding-right: 10px;
+}
+
 .form-control{
     border: 1px outset #6f42c1;
 }
@@ -25,9 +29,7 @@ form.form-inline {
 .button.btn.btn-outline-success.my-2.my-sm-0{
     width: 108px;
 }
-li{
-    padding-right: 35px;
-}
+
 .nav.navbar.navbar-expand-lg.navbar-light{
     background-color: rgb(44 195 217);
 }
@@ -48,6 +50,9 @@ label.nav-item.active{
 a.nav-link {
     font-size: large;
 }
+li.nav-item.active{
+    padding-right: 10px;
+}
 /* Profile****************************************************/
 main{
     display: inline;
@@ -62,12 +67,7 @@ fieldset{
     width: 440px;
     text-align: left;
 }
-user_info{
 
-}
-user edit{
-
-}
 legend{
     color:rgb(154, 172, 175) /*#6610f2*/;
 }
@@ -95,10 +95,6 @@ legend{
 :placeholder-shown{
     font-style: italic;
 }
-/* background-color: #9aacaf;
-text color: #1b3438;
-styling color: background-color: #2cc3cc;
-
-sky blue rgb(44, 195, 217)
-dark grey  rgb(27, 52, 56)
-light grey rgb(154, 172, 175)  */
+.col-lg-6.col-md-12.mb-4.mb-md-0 {
+    font-size: 10px;
+}

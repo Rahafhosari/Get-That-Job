@@ -9,8 +9,10 @@ body{
 }
 h1{
     font-weight: bold;
-    margin: 83px 0px 0px 23px;
-    font-size: 52px;
+    
+    margin: 7px 0px 0px 28px;
+    font-size: 49px;
+
     font-family: cursive;
 }
 .form-control{
@@ -26,7 +28,7 @@ form.form-inline {
     width: 108px;
 }
 li{
-    padding-right: 35px;
+    padding-right: 10px;
 }
 .nav.navbar.navbar-expand-lg.navbar-light{
     background-color: rgb(44 195 217);
@@ -40,7 +42,7 @@ button.btn.btn-outline-success.my-2.my-sm-0 {
 }
 label.nav-item.active{
     font-size: larger;
-    padding-right: 9px;
+    padding-right: 4px;
 }
 .bg-light{
     background-color: rgb(44 195 217) !important;
@@ -102,14 +104,11 @@ form{
 .form-check-label{
     display: inline;
 }
-.consultant{
-    display: flex;
+button.button_now{
+    font-size: 10px;
+    margin-top: 10px;
+    height: 50px;
 }
-
-/* background-color: #9aacaf;
-text color: #1b3438;
-styling color: background-color: #2cc3cc;
-
-sky blue rgb(44, 195, 217)
-dark grey  rgb(27, 52, 56)
-light grey rgb(154, 172, 175)  */
+footer.bg-light.text-center.text-lg-start{
+    font-size: 10px;
+}

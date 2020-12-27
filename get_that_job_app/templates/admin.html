@@ -11,38 +11,47 @@
 </head>
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-3">
-            </div>
-            <div class="col-9">
-                <h1>Welcome to Get That Job Website!</h1>
-            </div>
-        </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img src="{% static 'img/logo.jpg' %}" width="130px"/>
+            <img src="{% static 'img/logo.jpg' %}"width="130px" />
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <!-- <li class="nav-item active">
-                        <a class="nav-link" href="#">Home </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Booking</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Profile</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link " href="#">Partners</a>
-                    </li> -->
-                    <!-- <li>
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </li> -->
+                    {% if  request.session.logged_user_info %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/in">Home </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/booking">Booking</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                        {% if request.session.logged_user_info.user_role == 1 %}
+                        <li class="nav-item active">
+                            <a class="nav-link " href="/admin">Admin View</a>
+                        </li>
+                        {% endif %}
+                        
+                        <li>
+                            <form class="form-inline space" action="/in" method="POST">
+                                {% csrf_token %}
+                                <input name="product" id="product" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+                            <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                            <script>
+                                $(function () {
+                                    $("#product").autocomplete({
+                                        source: '{% url 'autocomplete' %}',
+                                    });
+                                });
+                            </script>
+                        </li>
+                    {% endif%} 
+                    {% if not request.session.logged_user_info %}
                         <form class="form-inline">
                             <label class="nav-item active"> Email:</label>
                             <input class="form-control mr-sm-2"  placeholder="Email">
@@ -51,15 +60,21 @@
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log-In</button>
                         </form>
                         <form class="form-inline">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Up</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
                         </form>
-                    <!-- <li class="nav-item active">
-                        <a class="nav-link " href="#">Hello (user)</a>
-                    </li>     -->
+                        {% endif%}
+                        {% if request.session.logged_user_info %}
+                            <li class="nav-item active">
+                                <a class="nav-link " href="/profile">Hello {{ request.session.logged_user_info.first_name }} {{request.session.logged_user_info.last_name}}</a>
+                            </li>  
+                            <form class="form-inline" action="log_out"  method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+                            </form>  
+                        {% endif%}
                 </ul>
             </div>
         </nav>
-    </div>
     <main>
         <div class="partner">
             <fieldset>

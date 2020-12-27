@@ -139,11 +139,7 @@ def user_login(login_info):
 
 #Update user information
 def edit(user_info,user_id):
-    # user = User.objects.get(id=update_id)
-    # fname = user_info['first_name']
-    # user.first_name = fname
-    # user.save()
-    #return user
+    
     User.objects.filter(id=user_id).update(first_name=user_info['first_name'],last_name=user_info['last_name'],email=user_info['email'],birthday=user_info['birthday'],education=user_info['education'],field_of_experience=user_info['field_expertise'],image=user_info['img'],interests=['interests'],about=['about'])
 
 #Show user info on profile

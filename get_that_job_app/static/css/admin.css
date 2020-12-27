@@ -9,8 +9,10 @@ body{
 }
 h1{
     font-weight: bold;
-    margin: 83px 0px 0px 23px;
-    font-size: 52px;
+   
+    margin: 7px 0px 0px 28px;
+    font-size: 49px;
+
     font-family: cursive;
 }
 .form-control{
@@ -26,7 +28,7 @@ form.form-inline {
     width: 108px;
 }
 li{
-    padding-right: 35px;
+    padding-right: 10px;
 }
 .nav.navbar.navbar-expand-lg.navbar-light{
     background-color: rgb(44 195 217);
@@ -107,4 +109,7 @@ legend{
     color: #1b3438;
     display: flex;
     justify-content: space-evenly;
+}
+footer.bg-light.text-center.text-lg-start{
+    font-size: 10px;
 }
