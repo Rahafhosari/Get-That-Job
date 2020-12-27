@@ -56,7 +56,7 @@ def profile(request):
     return render(request,"profile.html",user_context)
 
 #updating user information
-def edit(request,user_id):
+def edit(request):
     user = request.session['logged_user_info']
     models.edit(request.POST,request.session['logged_user_info']['user_id'])
     return redirect('/profile')
@@ -65,6 +65,11 @@ def edit(request,user_id):
 def booking(request):
     context = models.all_users()
     return render(request,'booking.html',context)
+
+
+#adding partners
+def partner(request):
+    return render(request,'partners.html')
 
 #Admin page
 def admin(request):
@@ -79,3 +84,4 @@ def add_partner(request):
 def edit_user_id(request):
     models.change_user_id(request.POST)
     return redirect('/admin')
+

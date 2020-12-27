@@ -26,13 +26,14 @@
             }
         </style>
         {% load static %}
-    <title>Title</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}"> 
-    
+        <title>Title</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/home.css' %}"> 
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        
     <!-- Bootstrap CSS -->
     
     </head>
@@ -51,25 +52,29 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="/in">Home </a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="booking">Booking</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="profile">Profile</a>
-                        </li>
-                        <!-- <li class="nav-item active">
-                            <a class="nav-link " href="#">Partners</a>
-                        </li> -->
-                        <li>
-                            <form class="form-inline space">
-                                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                            </form>
-                        </li>
-                            <!-- <form class="form-inline">
+                        {% if  request.session.logged_user_info %}
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/in">Home </a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/booking">Booking</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" href="/profile">Profile</a>
+                            </li>
+                            <!-- <li class="nav-item active">
+                                <a class="nav-link " href="#">Partners</a>
+                            </li> -->
+                            <li>
+                                <form class="form-inline space">
+                                    <input name="product" id="product" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                                
+                            </li>
+                        {% endif%} 
+                        {% if not request.session.logged_user_info %}
+                            <form class="form-inline">
                                 <label class="nav-item active"> Email:</label>
                                 <input class="form-control mr-sm-2"  placeholder="Email">
                                 <label class="nav-item active"> Password:</label>
@@ -78,14 +83,17 @@
                             </form>
                             <form class="form-inline">
                                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
-                            </form> -->
-                            <form class="form-inline" action="log_out"  method="POST">
-                                {% csrf_token %}
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
-                            </form> 
-                        <li class="nav-item active">
-                            <a class="nav-link " href="#">Hello {{request.session.logged_user_info.first_name}} {{request.session.logged_user_info.last_name}}</a>
-                        </li>    
+                            </form>
+                            {% endif%}
+                            {% if request.session.logged_user_info %}
+                                <li class="nav-item active">
+                                    <a class="nav-link " href="/profile">Hello {{request.session.logged_user_info.first_name}} {{request.session.logged_user_info.last_name}}</a>
+                                </li>  
+                                <form class="form-inline" action="log_out"  method="POST">
+                                    {% csrf_token %}
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+                                </form>  
+                            {% endif%}
                     </ul>
                 </div>
             </nav>
@@ -104,8 +112,8 @@
                     <p class="justified">If you are having a hard time preparing for your job interview, well you have come to the right place! take a quick look at our consultants. we have chosen one of the best consultants to perpare you to get the job of your dreams!
                         You can book your session now just by clicking the booking button.
                         Please take time to review the success stories that might inspire you. Join us and book your session to let us help you to Get That Job.
-                       </p>
-                       <button>BOOK NOW!</button>
+                    </p>
+                    <button>BOOK NOW!</button>
                     <br />
                     <!-- <a href="#" rel="noopener noreferrer" target="_blank">Book Now</a>  -->
                     </p>

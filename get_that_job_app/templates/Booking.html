@@ -1,24 +1,32 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Booking</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">   
+    <style>
+        form.form-inline.space{
+        padding-left: 267px;
+        }
+    </style>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/registration-style.css' %}">
-    <title> Registration </title>
+    <!-- Required meta tags -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+    <!-- Bootstrap CSS -
+    
+
 <body>
     <div class="container">
-        <div class="row">
-            <div class="col-3">
-            </div>
-            <div class="col-9">
-                <h1>Welcome to Get That Job Website!</h1>
+        <div class="row"> 
+            <div class="col-9 ">
+            <h1>Welcome to Get That Job Website!</h1>
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img src="{% static 'img/logo.jpg' %}" width="130px"/>
+            <img src="{% static 'img/logo.jpg' %}"  class="col-3">
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,14 +50,16 @@
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                         </form>
                     </li> -->
-                        <form class="form-inline">
+                        <form action="/log_in"  method="POST" class="form-inline">  <!-- go to home page if the email&password true or redirect with show what's the wrong-->
+                            {% csrf_token %}
                             <label class="nav-item active"> Email:</label>
-                            <input class="form-control mr-sm-2"  placeholder="Email">
+                            <input class="form-control mr-sm-2"  placeholder="Email" name="email">
                             <label class="nav-item active"> Password:</label>
-                            <input class="form-control mr-sm-2"  placeholder="Password">
+                            <input class="form-control mr-sm-2"  placeholder="Password" name="password">
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log-In</button>
                         </form>
-                        <form class="form-inline">
+                        <form action="/register" method="POST" class="form-inline"> <!-- go to register page -->
+                            {% csrf_token %}
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Up</button>
                         </form>
                     <!-- <li class="nav-item active">
@@ -58,117 +68,28 @@
                 </ul>
             </div>
         </nav>
-    </div>
-    <main>
-        <div class="consultant">
-        {% for consultant in consultants %}
-        <fieldset>
-            <legend>
-                <img src="{% static 'img/profile-pic.png' %}" alt="user Profile image" height="50px" width="50px" /><h2>Consultant info</h2>
-            </legend>
-            <ul>
-                <li>Fisrt Name :{{consultant.first_name}}</li>
-                <li>Last Name :{{consultant.last_name}}</li>
-                <li>Email :{{consultant.email}}</li>
-            </ul>
-            <button>Visit Consultant Profile</button>
-        </fieldset>
-        {% endfor %}
-        </div>
-        <fieldset>
-            <legend>
-                <img src="{% static 'img/booking.png' %}" alt="user Profile image" height="50px" width="50px" /><h2>Booking</h2>
-            </legend>
-            <form action="/register" method="POST">
-                {% csrf_token %}
-                <div class="form-group row">
-                    <label for="available_dates" class="col-form-label"> Available dates</label>
-                    <div><input type="date" id="date" name="Available-date"></div>
-                </div>
-                <div class="form-group row">
-                    <label for="last_name" class="col-form-label"> Book your session</label>
-                    <div><input type="date" id="date" name="booking_session"></div>
-                </div>
-                <button class="bn">BOOK NOW!</button>
-            </form>
-        </fieldset>
-    </main>
-    {% if messages %}
-    <ul class="messages">    
-        {% for message in messages %}    
-            <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>    
-        {% endfor %}
-    </ul>
-    {% endif %}
-    <!-- Footer -->
-    <footer class="bg-light text-center text-lg-start">
-        <!-- Grid container -->
-        <div class="container p-4">
-        <!--Grid row-->
-        <div class="row">
-            <!--Grid column-->
-            <div class="col-lg-6 col-md-12 mb-4 mb-md-0" >
-            <h5 class="text-uppercase">Get That Job</h5>
-    
-            <p>
-                This Privacy Policy describes Our policies and procedures on the collection,
-                use and disclosure of Your information when You use the Service and tells You
-                about Your privacy rights and how the law protects You.
+    <div class="main">
+        <div class="list">
 
-                We use Your Personal data to provide and improve the Service. By using the
-                Service, You agree to the collection and use of information in accordance with
-                this Privacy Policy.
-            </p>
-            </div>
-            <!--Grid column-->
-    
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase">Contact info</h5>
-            <br>
-            <ul class="list-unstyled mb-0">
-                <li>
-                    <img src="{% static 'img/phone.jpg' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark">  00972(22974523) </a>
-                </li>
-                <li>
-                    <img src="{% static 'img/email.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark"> info.gethatjob@gmail.com</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/fax.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark"> 00972(22974523)</a>
-                </li>
-            </ul>
-            </div>
-            <!--Grid column-->
-    
-            <!--Grid column-->
-            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-            <h5 class="text-uppercase mb-0">Social media accounts</h5>
-            <br>
-            <ul class="list-unstyled">
-                <li>
-                    <img src="{% static 'img/fb.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark">GetThatJob</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/twitter.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark">GetThatJob</a>
-                </li>
-                <li>
-                    <img src="{% static 'img/linkedin.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark">GetThatJob</a>
-                </li>
-            </ul>
-            </div>
-            <!--Grid column-->
+            <img src="../static/css/img/consultant.png" alt="image">
+            <h3>Consultant Information:</h3>
+            
         </div>
-        <!--Grid row-->
-        </div>
-        <!-- Grid container -->
+    <div class="choice">
+        <form>
+            <lable>Choose your consultant</lable>
+            <select name="choose your consultant" id="consultant_id">
+                <option value="consultant1">Consultant1 name</option>
+                <option value="consultant2">Consultant2 name</option>
+                <option value="consultant3">Consultant3 name</option>
+                <option value="consultant4">Consultant4 name</option>          
+            </select><br>
+        <label for="available dates">Available Dates:</label>
+        <input type="date" id="date" name="Available-date"><br>
+        <label for="booking">Book your session:</label>
+        <input type="date" id="date" name="Available-date">
+
+        </form>
     
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: rgb(154 172 175)">
-        © 2020 Copyright:
-        <a class="text-dark" href="https://GetThatJob.com/">GetThatJob.com</a>
-        </div>
-        <!-- Copyright -->
-    </footer>
-    <!-- Footer -->
-    </body>
+</body>
 </html>
