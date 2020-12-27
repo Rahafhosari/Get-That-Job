@@ -1,15 +1,28 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from . import models
+import json
+from django.http import JsonResponse
+
+from .models import Partner
 
 # to view the main page without sign in:
-def home(request): 
-    return render(request, "home_page.html")
+def home(request):
+    context = models.all_users()
+    return render(request, "home_page.html",context)
 
 # to view the main page after sign in :
 def home_in(request):
+    if 'term' in request.GET:
+        qs = Partner.objects.filter(name__icontains=request.GET.get('term'))
+        titles = list()
+        for product in qs:
+            titles.append(product.name)
+        # titles = [product.title for product in qs]
+        return JsonResponse(titles, safe=False)
     if 'logged_user_info' in request.session:
-        return render(request, "home_in.html")
+        context = models.all_users()
+        return render(request, "home_in.html",context)
     return redirect('/')
 
 
@@ -63,7 +76,8 @@ def edit(request):
 
 #adding booking
 def booking(request):
-    return render(request,'Booking.html',detalis)
+    context = models.all_users()
+    return render(request,'Booking.html',context)
 
 
 #adding partners
@@ -73,6 +87,10 @@ def partner(request):
 #Admin page
 def admin(request):
     context = models.all_users()
+    if 'logged_user_info' not in request.session:
+        return HttpResponse('YOU ARE NOT ADMIN ')
+    if not request.session['logged_user_info']['user_role']== 1 :
+        return redirect('/in')
     return render(request,'admin.html',context)
 
 def add_partner(request):
@@ -83,4 +101,5 @@ def add_partner(request):
 def edit_user_id(request):
     models.change_user_id(request.POST)
     return redirect('/admin')
+
 

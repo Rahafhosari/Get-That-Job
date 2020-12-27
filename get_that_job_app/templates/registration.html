@@ -24,26 +24,32 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <!-- <li class="nav-item active">
-                        <a class="nav-link" href="#">Home </a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Booking</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Profile</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link " href="#">Partners</a>
-                    </li> -->
-                    <!-- <li>
+                    {% if not request.session.logged_user_info %}
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/in">Home </a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/booking">Booking</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/profile">Profile</a>
+                        </li>
+                        {% if request.session.logged_user_info.user_role == 1 %}
+                        <li class="nav-item active">
+                            <a class="nav-link " href="/admin">Admin View</a>
+                        </li>
+                        {% endif %}
+                        
+                        <li>
+                            <form class="form-inline space">
+                                <input name="product" id="product" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                            
+                        </li>
+                    {% endif%} 
+                    {% if  request.session.logged_user_info %}
                         <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                        </form>
-                    </li> -->
-                    
-                        <form action="/log_in" class="form-inline">
                             <label class="nav-item active"> Email:</label>
                             <input class="form-control mr-sm-2"  placeholder="Email">
                             <label class="nav-item active"> Password:</label>
@@ -51,11 +57,18 @@
                             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log-In</button>
                         </form>
                         <form class="form-inline">
-                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign Up</button>
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Sign In</button>
                         </form>
-                    <!-- <li class="nav-item active">
-                        <a class="nav-link " href="#">Hello (user)</a>
-                    </li>     -->
+                        {% endif%}
+                        {% if not request.session.logged_user_info %}
+                            <li class="nav-item active">
+                                <a class="nav-link " href="/profile">Hello {{ request.session.logged_user_info.first_name }} {{request.session.logged_user_info.last_name}}</a>
+                            </li>  
+                            <form class="form-inline" action="log_out"  method="POST">
+                                {% csrf_token %}
+                                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Log out</button>
+                            </form>  
+                        {% endif%}
                 </ul>
             </div>
         </nav>

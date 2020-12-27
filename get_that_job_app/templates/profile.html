@@ -34,10 +34,11 @@
                         <li class="nav-item active">
                             <a class="nav-link" href="/profile">Profile</a>
                         </li>
-                        <!-- <li class="nav-item active">
-                            <a class="nav-link " href="#">Partners</a>
-                        </li>  -->
-                        
+                        {% if request.session.logged_user_info.user_role == 1 %}
+                            <li class="nav-item active">
+                                <a class="nav-link " href="/admin">Admin View</a>
+                            </li>
+                            {% endif %}
                         <li>
                             <form class="form-inline">
                                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">

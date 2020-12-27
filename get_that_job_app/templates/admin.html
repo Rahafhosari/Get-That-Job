@@ -96,11 +96,7 @@
                     <ul>
                         {% for partner in partners %}
                         <li> {{partner.name}} </li>
-                        <!-- <li>[ Company1 Name ]</li><img src="#" alt="logo">
-                        <li>[ Company2 Name ]</li><img src="#" alt="logo">
-                        <li>[ Company3 Name ]</li><img src="#" alt="logo">
-                        <li>[ Company4 Name ]</li><img src="#" alt="logo">
-                        <li>[ Company5 Name ]</li><img src="#" alt="logo"> -->
+                        <li>{{partner.about}} </li>
                         {% endfor %}
                     </ul>
                 </fieldset>
@@ -112,7 +108,7 @@
                 <legend>Admins</legend>
                 {% for admin in admins %}
                 <ul>
-                    <li>{{admin.first_name}} {{admin.last_name}} <br> {{admin.email}} </li><hr>
+                    <li>{{admin.first_name}} {{admin.last_name}} <br> {{admin.email}}  </li><hr>
                 </ul>
                 {% endfor %}
             </fieldset>
@@ -130,7 +126,7 @@
                 <legend>Consultants</legend>
                 {% for consultant in consultants %}
                 <ul>
-                    <li>{{consultant.first_name}} {{consultant.last_name}}</li>
+                    <li>{{consultant.first_name}} {{consultant.last_name}}  </li>
                 </ul>
                 {% endfor %}
             </fieldset>
@@ -155,8 +151,8 @@
             
             </fieldset>
         </div>
-         <!-- THIS Is IS ADMIN VIEW ONLY (id for user logged in == 1)-->
-         <div class="admin_view">
+        <!-- THIS Is IS ADMIN VIEW ONLY (id for user logged in == 1)-->
+        <div class="admin_view">
             <fieldset>
                 <legend>User Role</legend>
                 <form action="/adminedit" method="POST">

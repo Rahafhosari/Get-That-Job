@@ -112,6 +112,7 @@ def add_new_user(new_user):
             user_info = User.objects.create(first_name=new_user['first_name'],last_name=new_user['last_name'],email=new_user['email'],birthday=new_user['birthday'],education=new_user['education'],field_of_experience=new_user['field_expertise'],interests=new_user['interests'],about=new_user['about'])
             new_user_info = {
                         'user_id': user_info.id,
+                        'user_role': user_info.role.id,
                         'first_name': user_info.first_name,
                         'last_name': user_info.last_name,
                         'email': user_info.email,
@@ -128,6 +129,7 @@ def user_login(login_info):
             user=user_exist[0]
             new_user_exist={
                 'user_id': user.id,
+                'user_role': user.role.id,
                 'first_name': user.first_name,
                 'last_name': user.last_name,
                 'email': user.email,
@@ -148,7 +150,7 @@ def edit(user_info,user_id):
 def display(user_id):
     user = User.objects.get(id=user_id)
     context={
-        'user_id':user.id,
+        'user_id': user.id,
         'first_name' : user.first_name,
         'last_name' : user.last_name,
         'email' : user.email,
@@ -170,7 +172,8 @@ def all_users():
         "consultants": User.objects.filter(role = Role.objects.get(id=3)),
         "partners": Partner.objects.all(),
         "admins": User.objects.filter(role = Role.objects.get(id=1)),
-        "all_users" : User.objects.all()
+        "all_users" : User.objects.all(),
+
     }
     return context
 
@@ -184,6 +187,8 @@ def add_partner(post_info):
 
 def change_user_id(user_info):
     User.objects.filter(email=user_info['user_email']).update(role_id=user_info['user_role'])
+
+
 
 #Test
 #def all_users():

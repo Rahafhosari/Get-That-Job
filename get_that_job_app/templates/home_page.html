@@ -121,10 +121,13 @@
                 </div>
                 <div id="about" class="jumbotron">
                     <h3>Meet Our Partners</h3>
-                    <hr>
-                    <p class="justified">Axsos Academy <img src="#" alt="logo"></p>
-                    <p class="justified">UNDP Palestine <img src="#" alt="logo"></p>
-                    <br />
+                    {% for partner in partners %}
+                    <ul>
+                        <li> name of company  "{{partner.name}}" </li>
+                        <li> sector of company "{{partner.about}}" </li>
+                        <hr>
+                    </ul>
+                    {% endfor %}
                     </p>
                 </div>
             </div>

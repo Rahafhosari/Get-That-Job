@@ -7,7 +7,7 @@ from django.http import JsonResponse
 
 urlpatterns = [
     path('', views.home),
-    path('in',views.home_in),
+    path('in',views.home_in,name="autocomplete"),
     path('register', views.registration),
     path('register-page', views.registration_page),
     path('log_in',views.log_in),
@@ -19,5 +19,6 @@ urlpatterns = [
     path('admin',views.admin),
     path('addpartner',views.add_partner),
     path('adminedit',views.edit_user_id),
+    
 
 ]
