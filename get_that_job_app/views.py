@@ -80,6 +80,7 @@ def booking(request):
     return render(request,'Booking.html',context)
 
 
+
 #adding partners
 def partner(request):
     return render(request,'partners.html')

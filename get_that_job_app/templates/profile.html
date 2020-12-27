@@ -18,7 +18,7 @@
             </div>
         </div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <img src="{% static 'img/logo.jpg' %}" />
+            <img src="{% static 'img/logo.jpg' %}"width="130px" />
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -73,11 +73,9 @@
         </nav>
     </div>
     <main>
-        <div>
-        <img src="{% static 'img/profile-pic.png' %}" alt="user Profile image" height="100px" width="100px" />
-        </div>
         <div class="info">
             <fieldset class="user_info">
+                <img src="{% static 'img/profile-pic.png' %}" alt="user Profile image" height="100px" width="100px" />
                 <legend>User Information</legend>
                 <p><h6>First Name: {{first_name}}</h6></p>
                 <p><h6>Last Name: {{last_name}} </h6></p>
@@ -130,7 +128,7 @@
                     <div class="form-group row">
                         <label for="birthday" class="col-form-label">Birthday</label>
                         <div><input type="date" name="birthday"  id="birthday" class="form-control"></div>
-                    </div> 
+                    </div>  
                     <div class="mb-3 form-check">
                         <h6>Interests</h6>
                         <input type="checkbox" class="form-check-input" id="interests" name="interests">
@@ -149,5 +147,75 @@
             </fieldset>
         </div>
     </main>
+    <!-- Footer -->
+    <footer class="bg-light text-center text-lg-start">
+        <!-- Grid container -->
+        <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+            <!--Grid column-->
+            <div class="col-lg-6 col-md-12 mb-4 mb-md-0" >
+            <h5 class="text-uppercase">Get That Job</h5>
+    
+            <p>
+                This Privacy Policy describes Our policies and procedures on the collection,
+                use and disclosure of Your information when You use the Service and tells You
+                about Your privacy rights and how the law protects You.
+
+                We use Your Personal data to provide and improve the Service. By using the
+                Service, You agree to the collection and use of information in accordance with
+                this Privacy Policy.
+            </p>
+            </div>
+            <!--Grid column-->
+    
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Contact info</h5>
+            <br>
+            <ul class="list-unstyled mb-0">
+                <li>
+                    <img src="{% static 'img/phone.jpg' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark">  00972(22974523) </a>
+                </li>
+                <li>
+                    <img src="{% static 'img/email.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark"> info.gethatjob@gmail.com</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/fax.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark"> 00972(22974523)</a>
+                </li>
+            </ul>
+            </div>
+            <!--Grid column-->
+    
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+            <h5 class="text-uppercase mb-0">Social media accounts</h5>
+            <br>
+            <ul class="list-unstyled">
+                <li>
+                    <img src="{% static 'img/fb.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark">GetThatJob</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/twitter.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark">GetThatJob</a>
+                </li>
+                <li>
+                    <img src="{% static 'img/linkedin.png' %}" alt="user Profile image" height="30px" width="30px" /><a href="#!" class="text-dark">GetThatJob</a>
+                </li>
+            </ul>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+        </div>
+        <!-- Grid container -->
+    
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: rgb(154 172 175)">
+        © 2020 Copyright:
+        <a class="text-dark" href="https://GetThatJob.com/">GetThatJob.com</a>
+        </div>
+        <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
 </body>
 </html>
